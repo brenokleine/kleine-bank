@@ -11,16 +11,22 @@ public class Database{
 
     protected void addClient(String userName, String userPassword, long document) {
         
-        Client clientExists = verifyUserName(userName);
-
-        if(clientExists == null){
-            clientsList.add(new Client(userName, userPassword, document));
-        }
+        clientsList.add(new Client(userName, userPassword, document));
+        
     }
 
     protected Client verifyUserName(String userName){
         for (Client client : clientsList) {
             if(userName.equals(client.userName)){
+                return client;
+            }
+        }
+        return null;
+    }
+
+    protected Client verifyDocument(long document){
+        for (Client client : clientsList) {
+            if(document == client.document){
                 return client;
             }
         }

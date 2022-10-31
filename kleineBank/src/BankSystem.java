@@ -21,7 +21,7 @@ public class BankSystem {
                 mainMenu();
                 break;
             case 2: 
-                //create account
+                createAccount();
                 mainMenu();
                 break;
             default:
@@ -59,6 +59,7 @@ public class BankSystem {
             System.out.println("Error to log in...");
     }
 
+    //todo continue client menu...
     private void clientMenu(Client client){
         System.out.println("\n");
         System.out.println("--------------- Welcome, " + client.userName + "! ---------------");
@@ -68,4 +69,32 @@ public class BankSystem {
 
     }
     
+    private void createAccount(){
+        
+        String username;
+        String password = "";
+
+        System.out.println("--------------- Create Account ---------------");
+        System.out.println("Enter document: ");
+        long document = scan.nextLong();
+
+        if(database.verifyDocument(document) == null){
+            do{
+                System.out.println("Enter username: ");
+                username = scan.next();
+                if(database.verifyUserName(username) == null){
+                    System.out.println("Enter password: ");
+                    password = scan.next();
+                } else {
+                    System.out.println("Username already exists...");
+                }
+            } while(database.verifyUserName(username) != null);
+
+            database.addClient(username, password, document);
+
+        }
+        else
+            System.out.println("Document already linked to a client...");
+        
+    }
 }
