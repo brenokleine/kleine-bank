@@ -30,7 +30,12 @@ public class Client {
         return balance;
     }
 
-    protected boolean withdraw(float subtraction){
+    protected boolean withdraw(){
+
+        System.out.println("Amount to withdraw (To go back enter 0): ");
+        float subtraction = scan.nextFloat();
+
+        if(subtraction == 0){return true;}
 
         if(balance > subtraction){
             balance -= subtraction;
@@ -42,7 +47,13 @@ public class Client {
             return false;
     }
 
-    protected boolean deposit(float add){
+    protected boolean deposit(){
+        
+        System.out.println("Amount to deposit (To go back enter 0): ");
+        float add = scan.nextFloat();
+
+        if(add == 0){return true;}
+        
         balance += add;
         extrato.add("Amount deposited: " + add + " $USD | " + java.time.LocalDate.now());
         return true;

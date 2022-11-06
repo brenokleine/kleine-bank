@@ -70,7 +70,10 @@ public class BankSystem {
 
         switch(choice){
             case 1:
-                
+                client.withdraw();
+                break;
+            case 2:
+                client.deposit();
         }
 
     }
