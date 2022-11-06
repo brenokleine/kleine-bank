@@ -89,11 +89,8 @@ public class BankSystem {
                     System.out.println("\nInvalid option, try again...");
             }
         }
-
     }
 
-    
-    
     private void createAccount(){
         
         String username;
