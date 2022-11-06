@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class Client {
     protected String userName;
@@ -6,6 +7,8 @@ public class Client {
     protected long document;
     protected float balance;
     protected LinkedList<String> extrato;
+
+    Scanner scan = new Scanner(System.in);
 
     public Client(String userName, String userPassword, long document){
         this.userName = userName;
@@ -27,18 +30,11 @@ public class Client {
         return balance;
     }
 
-    protected boolean subtractBalance(float subtraction, String type){
-        
+    protected boolean withdraw(float subtraction){
+
         if(balance > subtraction){
             balance -= subtraction;
-            switch(type){
-                case "withdrawal":
-                    extrato.add("Withdrawal of " + subtraction + " $USD | " + java.time.LocalDate.now());
-                    break;
-                case "transference":
-                    extrato.add("Transference of " + subtraction + " $USD | " + java.time.LocalDate.now());
-                    break;
-            }
+            extrato.add("Withdrawal of " + subtraction + " $USD | " + java.time.LocalDate.now());
             return true;
         }
         else
@@ -46,9 +42,9 @@ public class Client {
             return false;
     }
 
-    protected boolean addBalance(float add){
+    protected boolean deposit(float add){
         balance += add;
-        extrato.add("Amount added: " + add + " $USD | " + java.time.LocalDate.now());
+        extrato.add("Amount deposited: " + add + " $USD | " + java.time.LocalDate.now());
         return true;
     }
 
