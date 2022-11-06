@@ -35,45 +35,61 @@ public class BankSystem {
         System.out.println("\n");
         System.out.println("--------------- Log in Menu ---------------");
         
-        System.out.println("Enter your username: (or enter " + "0" + " to go back)");
+        System.out.println("\nEnter your username: (or enter " + "0" + " to go back)");
         String userName = scan.next();
         if(userName.equals("0")){
-            System.out.println("Going back...");
+            System.out.println("\nGoing back...\n");
             return;
         }
         
-        System.out.println("Enter your password: (or enter " + "0" + " to go back)");
+        System.out.println("\nEnter your password: (or enter " + "0" + " to go back)");
         String userPassword = scan.next();
         if(userPassword.equals("0")){
-            System.out.println("Going back...");
+            System.out.println("\nGoing back...");
             return;
         }
 
         Client login = database.verifyLogIn(userName, userPassword);
 
         if(login != null){
-            System.out.println("Logged in successfully! ");
+            System.out.println("\nLogged in successfully!\n");
             clientMenu(login);
         }
         else
-            System.out.println("Error to log in...");
+            System.out.println("\nError to log in...\n");
     }
 
-    //todo continue client menu...
     private void clientMenu(Client client){
-        System.out.println("\n");
-        System.out.println("--------------- Welcome, " + client.userName + "! ---------------");
-        System.out.println("Your balance: " + client.balance + "$USD");
-        System.out.println("1 - Withdraw \n2 - Deposit \n3 - Transfer \n4 - Extrato\n0 - Exit");
-
-        int choice = scan.nextInt();
-
-        switch(choice){
-            case 1:
-                client.withdraw();
-                break;
-            case 2:
-                client.deposit();
+        
+        while(true){
+            System.out.println("\n");
+            System.out.println("--------------- Welcome, " + client.userName + "! ---------------");
+            System.out.println("Your balance: " + client.balance + " $USD");
+            System.out.println("1 - Withdraw \n2 - Deposit \n3 - Transfer \n4 - Extrato\n0 - Exit");
+    
+            int choice = scan.nextInt();
+    
+            switch(choice){
+                case 1:
+                    client.withdraw();
+                    break;
+                case 2:
+                    client.deposit();
+                    break;
+                case 3:
+    
+                    break;
+                case 4:
+                    System.out.println("---------- Extrato ----------");
+                    client.getExtrato();
+                    System.out.println("Enter 0 to continue...");
+                    scan.next();
+                    break;
+                case 0:
+                    return;
+                default:
+                    System.out.println("Invalid option, try again...");
+            }
         }
 
     }

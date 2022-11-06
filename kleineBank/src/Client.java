@@ -59,7 +59,7 @@ public class Client {
         return true;
     }
 
-    private void getExtrato(){
+    protected void getExtrato(){
         System.out.println(extrato.toString());
     }
 }
