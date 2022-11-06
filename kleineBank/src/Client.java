@@ -43,7 +43,7 @@ public class Client {
             return true;
         }
         else
-            System.out.println("Not enough funds...");
+            System.out.println("\nNot enough funds...");
             return false;
     }
 
@@ -60,6 +60,8 @@ public class Client {
     }
 
     protected void getExtrato(){
-        System.out.println(extrato.toString());
+        for (String string : extrato) {
+            System.out.println(string + "\n");
+        }
     }
 }

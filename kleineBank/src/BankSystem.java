@@ -25,20 +25,19 @@ public class BankSystem {
                 mainMenu();
                 break;
             default:
-                System.out.println("Must be numbers 1 or 2...");
+                System.out.println("\nMust be numbers 1 or 2...");
                 mainMenu();
                 break;
         }
     }
 
     private void logInMenu(){
-        System.out.println("\n");
-        System.out.println("--------------- Log in Menu ---------------");
+        System.out.println("\n--------------- Log in Menu ---------------");
         
         System.out.println("\nEnter your username: (or enter " + "0" + " to go back)");
         String userName = scan.next();
         if(userName.equals("0")){
-            System.out.println("\nGoing back...\n");
+            System.out.println("\nGoing back...");
             return;
         }
         
@@ -52,20 +51,19 @@ public class BankSystem {
         Client login = database.verifyLogIn(userName, userPassword);
 
         if(login != null){
-            System.out.println("\nLogged in successfully!\n");
+            System.out.println("\nLogged in successfully!");
             clientMenu(login);
         }
         else
-            System.out.println("\nError to log in...\n");
+            System.out.println("\nError to log in...");
     }
 
     private void clientMenu(Client client){
         
         while(true){
-            System.out.println("\n");
-            System.out.println("--------------- Welcome, " + client.userName + "! ---------------");
-            System.out.println("Your balance: " + client.balance + " $USD");
-            System.out.println("1 - Withdraw \n2 - Deposit \n3 - Transfer \n4 - Extrato\n0 - Exit");
+            System.out.println("\n--------------- Welcome, " + client.userName + "! ---------------");
+            System.out.println("\nYour balance: " + client.balance + " $USD");
+            System.out.println("\n1 - Withdraw \n2 - Deposit \n3 - Transfer \n4 - Extrato\n0 - Exit");
     
             int choice = scan.nextInt();
     
@@ -88,7 +86,7 @@ public class BankSystem {
                 case 0:
                     return;
                 default:
-                    System.out.println("Invalid option, try again...");
+                    System.out.println("\nInvalid option, try again...");
             }
         }
 
