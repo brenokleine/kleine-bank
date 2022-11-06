@@ -64,8 +64,14 @@ public class BankSystem {
         System.out.println("\n");
         System.out.println("--------------- Welcome, " + client.userName + "! ---------------");
         System.out.println("Your balance: " + client.balance + "$USD");
-        System.out.println("1 - Withdraw \n2 - Deposit \n3 - Transfer\n 0 - Exit");
+        System.out.println("1 - Withdraw \n2 - Deposit \n3 - Transfer \n4 - Extrato\n0 - Exit");
 
+        int choice = scan.nextInt();
+
+        switch(choice){
+            case 1:
+                
+        }
 
     }
     
@@ -97,4 +103,7 @@ public class BankSystem {
             System.out.println("Document already linked to a client...");
         
     }
+
+
+  
 }

@@ -27,10 +27,18 @@ public class Client {
         return balance;
     }
 
-    protected boolean subtractBalance(float subtraction){
+    protected boolean subtractBalance(float subtraction, String type){
         
         if(balance > subtraction){
             balance -= subtraction;
+            switch(type){
+                case "withdrawal":
+                    extrato.add("Withdrawal of " + subtraction + " $USD | " + java.time.LocalDate.now());
+                    break;
+                case "transference":
+                    extrato.add("Transference of " + subtraction + " $USD | " + java.time.LocalDate.now());
+                    break;
+            }
             return true;
         }
         else
@@ -40,6 +48,11 @@ public class Client {
 
     protected boolean addBalance(float add){
         balance += add;
+        extrato.add("Amount added: " + add + " $USD | " + java.time.LocalDate.now());
         return true;
+    }
+
+    private void getExtrato(){
+        System.out.println(extrato.toString());
     }
 }
