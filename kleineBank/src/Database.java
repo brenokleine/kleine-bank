@@ -52,15 +52,14 @@ public class Database{
 
     private void initialFill(){
 
-        clientsList.add(new Client("brenokleine", "mypassword", 111111111));
+        clientsList.add(new Client("brenokleine", "Breno Kleine",  "mypassword", 111111111));
         
-        clientsList.add(new Client("armandojose", "mypassword", 222222222));
+        clientsList.add(new Client("armandojose", "Jose Armando", "mypassword", 222222222));
         
-        clientsList.add(new Client("arthurreinaldo", "mypassword", 333333333));
+        clientsList.add(new Client("arthurreinaldo", "Arthur Reinaldo", "mypassword", 333333333));
         
-        clientsList.add(new Client("bilaragao", "mypassword", 444444444));
+        clientsList.add(new Client("bilaragao", "Gabriel Aragão","mypassword", 444444444));
 
     }
-    
 
 }

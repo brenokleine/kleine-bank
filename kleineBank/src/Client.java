@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Client {
     protected String userName;
+    protected String clientName;
     private String userPassword;
     protected long document;
     protected float balance;
@@ -10,8 +11,9 @@ public class Client {
 
     Scanner scan = new Scanner(System.in);
 
-    public Client(String userName, String userPassword, long document){
+    public Client(String userName, String clientName, String userPassword, long document){
         this.userName = userName;
+        this.clientName = clientName;
         this.userPassword = userPassword;
         this.document = document;
         balance = 0;

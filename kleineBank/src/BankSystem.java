@@ -61,9 +61,9 @@ public class BankSystem {
     private void clientMenu(Client client){
         
         while(true){
-            System.out.println("\n--------------- Welcome, " + client.userName + "! ---------------");
+            System.out.println("\n--------------- Welcome, " + client.clientName + "! ---------------");
             System.out.println("\nYour balance: " + client.balance + " $USD");
-            System.out.println("\n1 - Withdraw \n2 - Deposit \n3 - Transfer \n4 - Extrato\n0 - Exit");
+            System.out.println("\n1 - Withdraw \n2 - Deposit \n3 - Transaction \n4 - Extract\n0 - Exit");
     
             int choice = scan.nextInt();
     
@@ -75,10 +75,10 @@ public class BankSystem {
                     client.deposit();
                     break;
                 case 3:
-                    //todo transference between accounts
+                    transaction(client);
                     break;
                 case 4:
-                    System.out.println("---------- Extrato ----------");
+                    System.out.println("---------- Extract ----------");
                     client.getExtrato();
                     System.out.println("Enter 0 to continue...");
                     scan.next();
@@ -120,6 +120,53 @@ public class BankSystem {
         
     }
 
+    private void transaction(Client client){
+        System.out.println("---------- Transaction Menu ----------");
+        System.out.println("Type the recipient's document: ");
+        long recipientDocument = scan.nextLong();
 
-  
+        Client recipient = database.verifyDocument(recipientDocument);
+
+        if(recipient == null){
+            System.out.println("Document not found on the database, cancelling transaction...");
+            
+            try {
+                Thread.sleep(2000);
+                return;
+            } catch (InterruptedException e) {return;}
+
+        } else {
+            System.out.println("--- Type 0 to cancel transaction ---");
+            System.out.println("Recipient's Name: " + recipient.clientName);
+            System.out.println("Amount to be sent: ");
+            float amount = scan.nextFloat();
+
+            if(amount == 0){
+                System.out.println("Cancelling transaction...");
+
+                try {
+                    Thread.sleep(2000);
+                    return;
+                } catch (InterruptedException e) {return;}
+
+            } else {
+                System.out.println("Processing Transaction...");
+                client.balance -= amount;
+                client.extrato.add("Transaction of " + amount + " $USD to " + recipient.clientName + " | " + java.time.LocalDate.now());
+                
+                recipient.balance += amount;
+                recipient.extrato.add("Recieving of " + amount + " $USD from " + client.clientName + " | " + java.time.LocalDate.now());
+
+                
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {}
+
+                System.out.println("Transaction Complete! Returning...");
+                return;
+            }
+        }
+    }
+
+
 }
